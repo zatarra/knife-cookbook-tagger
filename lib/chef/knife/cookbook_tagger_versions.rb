@@ -1,5 +1,5 @@
 #
-# Author:: Marius Ducea (<marius.ducea@gmail.com>)
+# Author:: David Gouveia (<david.gouveia@gmail.com>)
 # Copyright:: Copyright (c) 2013 Marius Ducea
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 #
 
 module ServerCookbookTagger
-  class CookbookTaggerVersions < Chef::Knife
+  class CookbookTagger < Chef::Knife
 
     deps do
       require 'fileutils'

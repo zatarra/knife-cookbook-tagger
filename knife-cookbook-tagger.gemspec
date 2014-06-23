@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = s.summary
   s.license     = "Apache 2.0"
 
-  s.rubyforge_project = "knife-cookbook-tagger"
+#  s.rubyforge_project = "knife-cookbook-tagger"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
