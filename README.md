@@ -1,7 +1,7 @@
 Knife-Cleanup
 ===
 
-This is a [Knife](http://wiki.opscode.com/display/chef/Knife) plugin to help cleanup unused cookbook versions from a chef server. If you have an automated system that creates new cookbook versions for each commit (maybe something like [chef-jenkins][chefjenkins]) then your chef server might end up with thousands of cookbook versions and they most of them are unused. And this is perfectly fine... Still if this annoys you, this plugin will help you cleanup unused versions by looking into each environment and keeping the versions used there and also the latest version of each cookbook. Before deleting any cookbooks it will download and create a backup of them under `.cleanup/cookbook_name/`.
+This is a [Knife](http://wiki.opscode.com/display/chef/Knife) plugin to help forking cookbook versions. This is particularly useful when you have different cookbook versions between dev and prod environments and you want them to be the same prior to a prod release.
 
 ## Installation
 
@@ -16,24 +16,22 @@ gem install knife-cookbook-tagger
 For a list of commands:
 
 ```bash
-knife cleanup --help
+knife cookbooktagger --help
 ```
 
 Currently there is only one command available:
 
 ```bash
-knife cleanup versions <-D>
+knife cookbooktagger -o <original version> -t [<target version>]
 ```
 
-If you run it without --delete (-D) it will show you the versions that would be deleted, but not delete anything. In delete mode it will save first a backup of the version and then proceed to delete it. I've seen various strange situations where knife is not able to download the cookbook version from the server, and be aware that we will skip those cases and there will not be a backup for such corrupted versions. You've been warned. 
+If you run the command without specifying the target version, then a new cookbook will be generated using the latest version (incrementing the minor version by 1).
 
-Note: this is by no means production ready; I'm using it with success for my needs and hopefully you will find it useful too. Be sure to do a backup your chef server ([knife-backup][knifebackup] before using it, etc. 
+Note: this is by no means production ready; I'm using it with success for my needs and hopefully you will find it useful too. Be sure to do a backup your chef server first. 
 
 ## Todo/Ideas
   
-  * Make backup optional and location of them configurable
-  * Cleanup databags
-  * Cleanup unused cookbooks
+  * automatically cleanup old cookbook versions
 
 ## Development
 
